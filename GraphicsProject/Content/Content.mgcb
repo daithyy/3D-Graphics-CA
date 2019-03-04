@@ -68,3 +68,9 @@
 /processorParam:TextureFormat=Compressed
 /build:Models/ArcticBear.fbx
 
+#begin Effects/NormalPointLight.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Effects/NormalPointLight.fx
+

@@ -51,7 +51,9 @@
     <Compile Include="Assets\Material.cs" />
     <Compile Include="Assets\ModelDataExtractor.cs" />
     <Compile Include="Assets\SimpleModel.cs" />
+    <Compile Include="Effects\NormalPointLightModel.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="Materials\Material.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
