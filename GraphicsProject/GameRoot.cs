@@ -9,24 +9,28 @@ namespace GraphicsProject
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Game1 : Game
+    public class GameRoot : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         InputEngine input;
-        Camera camera;
+        Camera mainCamera;
 
         CustomEffectModel model;
 
-        public Game1()
+        public GameRoot()
         {
             graphics = new GraphicsDeviceManager(this);
+            input = new InputEngine(this);
             Content.RootDirectory = "Content";
         }
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            CustomEffectModel model = new CustomEffectModel("ArcticBear", new Vector3(0, 0, 0));
+
+            mainCamera = new Camera("cam", new Vector3(0, 5, 10), new Vector3(0, 0, -1));
+            mainCamera.Initialize();
 
             base.Initialize();
         }
@@ -49,8 +53,7 @@ namespace GraphicsProject
             if (InputEngine.IsKeyPressed(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
-            camera.Update();
+            mainCamera.Update();
 
             if (model != null)
             {
@@ -64,11 +67,9 @@ namespace GraphicsProject
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
-
             if (model != null)
             {
-                model.Draw(camera);
+                model.Draw(mainCamera);
             }
 
             base.Draw(gameTime);

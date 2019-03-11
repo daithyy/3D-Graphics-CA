@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GraphicsProject.Materials;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sample;
 using System;
