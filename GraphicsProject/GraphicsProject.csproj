@@ -50,6 +50,7 @@
     <Compile Include="Assets\InputEngine.cs" />
     <Compile Include="Assets\ModelDataExtractor.cs" />
     <Compile Include="Assets\SimpleModel.cs" />
+    <Compile Include="Effects\MultiplePointLightModel.cs" />
     <Compile Include="Effects\SpecularPointLightModel.cs" />
     <Compile Include="Effects\NormalPointLightModel.cs" />
     <Compile Include="GameRoot.cs" />

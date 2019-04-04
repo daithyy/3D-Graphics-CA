@@ -25,7 +25,7 @@ namespace GraphicsProject
         List<GameObject3D> _gameObjects = new List<GameObject3D>();
         CustomEffectModel _model;
 
-        List<SpecularPointLightMaterial> _lights = new List<SpecularPointLightMaterial>();
+        List<MultiplePointLightMaterial> _lights = new List<MultiplePointLightMaterial>();
 
         public GameRoot()
         {
@@ -60,26 +60,36 @@ namespace GraphicsProject
         {            
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            AddModel(new NormalPointLightModel("house", new Vector3(-200, 0, 0),
-                "Textures/Rock_1",
-                "Textures/Rock_1_normal_intense"));
+            AddModel(new MultiplePointLightModel("house", new Vector3(-200, 0, 50),
+                new[]
+                {
+                    "Textures/Rock_1",
+                    "Textures/Rock_2"
+                },
+                "Textures/Rock_1_normal_intense",
+                "Textures/Pokeball/Sphere_specular"));
 
-            AddModel(new SpecularPointLightModel("ArcticBear", new Vector3(0, 0, -50),
-                "Models/Arctic Bear/MountPolarBear_Diffuse01",
+            AddModel(new MultiplePointLightModel("ArcticBear", new Vector3(0, 0, -50),
+                new[]
+                {
+                    "Models/Arctic Bear/MountPolarBear_Diffuse01",
+                    "Models/Arctic Bear/MountPolarBear_Diffuse02"
+                },
                 "Models/Arctic Bear/MountPolarBear_Diffuse01_Normal",
                 "Models/Arctic Bear/MountPolarBear_Diffuse01_spec2"));
 
-            AddModel(new SpecularPointLightModel("Pokeball", new Vector3(200, 100, 0),
-                "Textures/Pokeball/Sphere_albedo",
+            AddModel(new MultiplePointLightModel("Pokeball", new Vector3(200, 100, 0),
+                new[]
+                {
+                    "Textures/Pokeball/Sphere_albedo",
+                    "Textures/Pokeball/Sphere_albedo2"
+                },
                 "Textures/Pokeball/Sphere_normal",
                 "Textures/Pokeball/Sphere_specular"));
 
-            _lights.Add(new SpecularPointLightMaterial()
+            _lights.Add(new MultiplePointLightMaterial()
             {
-                AmbientColor = Color.DarkGray,
-                Position = new Vector3(70, 10, -50),
-                LightColor = Color.White,
-                Attenuation = 50
+                AmbientColor = Color.DarkGray
             });
         }
 
@@ -107,20 +117,12 @@ namespace GraphicsProject
 
             _lights.ForEach(l => l.Update());
 
-            foreach (SpecularPointLightMaterial light in _lights)
-            {
-                if (light is SpecularPointLightMaterial l)
-                {
-                    DebugEngine.AddBoundingSphere(new BoundingSphere(l.Position, 0.5f), Color.White);
-                }
-            }            
-
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.DarkGray);
 
             DrawGameObjects();
 

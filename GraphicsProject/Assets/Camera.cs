@@ -29,6 +29,7 @@ namespace GraphicsProject.Assets
         private Vector3 _cameraPosition;
         private Vector3 _cameraRotation;
         private Vector3 _mouseRotationBuffer;
+
         private MouseState _currentMouseState;
         private MouseState _previousMouseState;
 
