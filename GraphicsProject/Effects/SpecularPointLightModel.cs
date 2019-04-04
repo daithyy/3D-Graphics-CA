@@ -58,28 +58,28 @@ namespace GraphicsProject.Effects
             DebugEngine.AddBoundingSphere(new BoundingSphere(material.Position, _radius), _color);
 
             if (InputEngine.IsKeyHeld(Keys.Up))
-                ((SpecularPointLightMaterial)Material).Position += new Vector3(0, 0, -_speed);
+                material.Position += new Vector3(0, 0, -_speed);
 
             if (InputEngine.IsKeyHeld(Keys.Down))
-                ((SpecularPointLightMaterial)Material).Position += new Vector3(0, 0, _speed);
+                material.Position += new Vector3(0, 0, _speed);
 
             if (InputEngine.IsKeyHeld(Keys.Left))
-                ((SpecularPointLightMaterial)Material).Position += new Vector3(-_speed, 0, 0);
+                material.Position += new Vector3(-_speed, 0, 0);
 
             if (InputEngine.IsKeyHeld(Keys.Right))
-                ((SpecularPointLightMaterial)Material).Position += new Vector3(_speed, 0, 0);
+                material.Position += new Vector3(_speed, 0, 0);
 
             if (InputEngine.IsKeyHeld(Keys.PageUp))
-                ((SpecularPointLightMaterial)Material).Position += new Vector3(0, _speed, 0);
+                material.Position += new Vector3(0, _speed, 0);
 
             if (InputEngine.IsKeyHeld(Keys.PageDown))
-                ((SpecularPointLightMaterial)Material).Position += new Vector3(0, -_speed, 0);
+                material.Position += new Vector3(0, -_speed, 0);
 
             if (InputEngine.IsKeyHeld(Keys.Add))
-                ((SpecularPointLightMaterial)Material).Attenuation += _speed * 2;
+                material.Attenuation += _speed * 2;
 
             if (InputEngine.IsKeyHeld(Keys.Subtract))
-                ((SpecularPointLightMaterial)Material).Attenuation -= _speed * 2;
+                material.Attenuation -= _speed * 2;
 
             base.Update();
         }

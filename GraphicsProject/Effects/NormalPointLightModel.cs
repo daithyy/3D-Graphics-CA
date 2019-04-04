@@ -51,28 +51,28 @@ namespace GraphicsProject.Effects
             DebugEngine.AddBoundingSphere(new BoundingSphere(material.Position, _radius), _color);
 
             if (InputEngine.IsKeyHeld(Keys.Up))
-                ((NormalPointLightMaterial) Material).Position += new Vector3(0, 0, -_speed);
+                material.Position += new Vector3(0, 0, -_speed);
 
             if (InputEngine.IsKeyHeld(Keys.Down))
-                ((NormalPointLightMaterial) Material).Position += new Vector3(0, 0, _speed);
+                material.Position += new Vector3(0, 0, _speed);
 
             if (InputEngine.IsKeyHeld(Keys.Left))
-                ((NormalPointLightMaterial) Material).Position += new Vector3(-_speed, 0, 0);
+                material.Position += new Vector3(-_speed, 0, 0);
 
             if (InputEngine.IsKeyHeld(Keys.Right))
-                ((NormalPointLightMaterial) Material).Position += new Vector3(_speed, 0, 0);
+                material.Position += new Vector3(_speed, 0, 0);
 
             if (InputEngine.IsKeyHeld(Keys.PageUp))
-                ((NormalPointLightMaterial) Material).Position += new Vector3(0, _speed, 0);
+                material.Position += new Vector3(0, _speed, 0);
 
             if (InputEngine.IsKeyHeld(Keys.PageDown))
-                ((NormalPointLightMaterial) Material).Position += new Vector3(0, -_speed, 0);
+                material.Position += new Vector3(0, -_speed, 0);
 
             if (InputEngine.IsKeyHeld(Keys.Add))
-                ((NormalPointLightMaterial) Material).Attenuation += _speed * 2;
+                material.Attenuation += _speed * 2;
 
             if (InputEngine.IsKeyHeld(Keys.Subtract))
-                ((NormalPointLightMaterial) Material).Attenuation -= _speed * 2;
+                material.Attenuation -= _speed * 2;
 
             base.Update();
         }

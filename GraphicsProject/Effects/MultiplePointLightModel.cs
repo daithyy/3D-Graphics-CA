@@ -79,7 +79,7 @@ namespace GraphicsProject.Effects
                     material.Position[i] += new Vector3(0, speed[i] * dt, 0);
 
                 if (InputEngine.IsKeyHeld(Keys.PageDown))
-                    material.Position[i] += new Vector3(0, -speed[i] * dt, 0);                
+                    material.Position[i] += new Vector3(0, -speed[i] * dt, 0);
 
                 if (material.IsAlternateTexture)
                 {
