@@ -1,14 +1,8 @@
 ﻿using GraphicsProject.Materials;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Sample;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Graphics
+namespace GraphicsProject.Assets
 {
     public class CustomEffectModel : SimpleModel
     {
@@ -34,7 +28,7 @@ namespace Graphics
             }
         }
 
-        public override void Draw(Camera camera)
+        public override void Draw(FPSCamera camera)
         {
             foreach (ModelMesh mesh in Model.Meshes)
             {
@@ -44,8 +38,7 @@ namespace Graphics
                     part.Effect.Parameters["View"].SetValue(camera.View);
                     part.Effect.Parameters["Projection"].SetValue(camera.Projection);
 
-                    if (Material != null)
-                        Material.SetEffectParameters(part.Effect);
+                    Material?.SetEffectParameters(part.Effect);
                 }
                 mesh.Draw();
             }

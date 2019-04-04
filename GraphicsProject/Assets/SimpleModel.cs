@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Content;
 
-namespace Sample
+namespace GraphicsProject.Assets
 {
     public class SimpleModel : GameObject3D
     {
         public Model Model { get; set; }
         public Matrix[] BoneTransforms { get; set; }
-       protected string _asset;
+        protected string _asset;
 
         public BoundingBox AABB { get; set; }
 
@@ -65,7 +59,7 @@ namespace Sample
 
             base.Update();
         }
-        public override void Draw(Camera camera)
+        public override void Draw(FPSCamera camera)
         {
             foreach (ModelMesh mesh in Model.Meshes)
             {

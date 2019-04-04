@@ -1,17 +1,9 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-using System.Reflection;
-using System.Xml.Serialization;
-using System.IO;
-using System.Runtime.Serialization;
-
-namespace Sample
+namespace GraphicsProject.Assets
 {
     public delegate void ObjectStringIDHandler(string id);
 

@@ -1,28 +1,35 @@
-﻿using Graphics;
-using GraphicsProject.Materials;
+﻿using GraphicsProject.Materials;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Sample;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GraphicsProject.Assets;
 
 namespace GraphicsProject.Effects
 {
     public class NormalPointLightModel : CustomEffectModel
     {
-        public NormalPointLightModel(string asset, Vector3 position) : base(asset, position) { }
+        private string _albedo;
+        private string _normal;
+
+        public NormalPointLightModel(string asset, Vector3 position, string albedo, string normal) : base(asset,
+            position)
+        {
+            _albedo = albedo;
+            _normal = normal;
+        }
 
         public override void LoadContent()
         {
             // Load effect first
             CustomEffect = GameUtilities.Content.Load<Effect>("Effects/NormalPointLight");
 
-            Texture2D texture = GameUtilities.Content.Load<Texture2D>("Textures/Rock_1");
-            Texture2D normal = GameUtilities.Content.Load<Texture2D>("Textures/Rock_1_normal_intense");
+            var texture = GameUtilities.Content.Load<Texture2D>(_albedo);
+            var normal = GameUtilities.Content.Load<Texture2D>(_normal);
 
             Material = new NormalPointLightMaterial()
             {
@@ -35,37 +42,37 @@ namespace GraphicsProject.Effects
 
         public override void Update()
         {
-            NormalPointLightMaterial _material = (Material as NormalPointLightMaterial);
+            NormalPointLightMaterial material = ((NormalPointLightMaterial) Material);
 
-            float _radius = _material.Attenuation;
-            Color _color = _material.LightColor;
-            float _speed = 0.025f;
+            float _radius = material.Attenuation;
+            Color _color = material.LightColor;
+            float _speed = 1f;
 
-            DebugEngine.AddBoundingSphere(new BoundingSphere(_material.Position, _radius), _color);
+            DebugEngine.AddBoundingSphere(new BoundingSphere(material.Position, _radius), _color);
 
             if (InputEngine.IsKeyHeld(Keys.Up))
-                (Material as NormalPointLightMaterial).Position += new Vector3(0, 0, -_speed);
+                ((NormalPointLightMaterial) Material).Position += new Vector3(0, 0, -_speed);
 
             if (InputEngine.IsKeyHeld(Keys.Down))
-                (Material as NormalPointLightMaterial).Position += new Vector3(0, 0, _speed);
+                ((NormalPointLightMaterial) Material).Position += new Vector3(0, 0, _speed);
 
             if (InputEngine.IsKeyHeld(Keys.Left))
-                (Material as NormalPointLightMaterial).Position += new Vector3(-_speed, 0, 0);
+                ((NormalPointLightMaterial) Material).Position += new Vector3(-_speed, 0, 0);
 
             if (InputEngine.IsKeyHeld(Keys.Right))
-                (Material as NormalPointLightMaterial).Position += new Vector3(_speed, 0, 0);
+                ((NormalPointLightMaterial) Material).Position += new Vector3(_speed, 0, 0);
 
             if (InputEngine.IsKeyHeld(Keys.PageUp))
-                (Material as NormalPointLightMaterial).Position += new Vector3(0, _speed, 0);
+                ((NormalPointLightMaterial) Material).Position += new Vector3(0, _speed, 0);
 
             if (InputEngine.IsKeyHeld(Keys.PageDown))
-                (Material as NormalPointLightMaterial).Position += new Vector3(0, -_speed, 0);
+                ((NormalPointLightMaterial) Material).Position += new Vector3(0, -_speed, 0);
 
             if (InputEngine.IsKeyHeld(Keys.Add))
-                (Material as NormalPointLightMaterial).Attenuation += _speed * 2;
+                ((NormalPointLightMaterial) Material).Attenuation += _speed * 2;
 
             if (InputEngine.IsKeyHeld(Keys.Subtract))
-                (Material as NormalPointLightMaterial).Attenuation -= _speed * 2;
+                ((NormalPointLightMaterial) Material).Attenuation -= _speed * 2;
 
             base.Update();
         }

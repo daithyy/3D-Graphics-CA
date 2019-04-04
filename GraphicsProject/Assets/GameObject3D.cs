@@ -1,9 +1,6 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-
-namespace Sample
+namespace GraphicsProject.Assets
 {
     public class GameObject3D
     {
@@ -25,7 +22,6 @@ namespace Sample
         public virtual void Initialize() { }
         public virtual void LoadContent() { }
         public virtual void Update() { }
-        public virtual void Draw(Camera camera) { }
+        public virtual void Draw(FPSCamera camera) { }
     }
- 
 }

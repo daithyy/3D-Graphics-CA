@@ -9,12 +9,10 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Content;
 
-namespace Sample
+namespace GraphicsProject.Assets
 {
     public class ImmediateShapeDrawer
 	{
@@ -55,7 +53,7 @@ namespace Sample
             activeShapes.Clear();
         }
 
-		public void DrawBoundingBox(BoundingBox box, Camera camera)
+		public void DrawBoundingBox(BoundingBox box, FPSCamera camera)
 		{
 			DebugShape shape = GetShapeForLines(12, 0);
 
@@ -94,7 +92,7 @@ namespace Sample
             Clear();
 		}
 
-        public void DrawBoundingSphere(BoundingSphere sphere, Camera camera)
+        public void DrawBoundingSphere(BoundingSphere sphere, FPSCamera camera)
         {
             DebugShape shape = GetShapeForLines(sphereLineCount, 0);
 
@@ -109,7 +107,7 @@ namespace Sample
             Clear();
         }
 
-		public void Draw(Camera _camera)
+		public void Draw(FPSCamera _camera)
 		{
             if (_camera != null)
             {
