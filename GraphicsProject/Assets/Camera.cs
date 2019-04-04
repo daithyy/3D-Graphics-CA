@@ -113,7 +113,7 @@ namespace GraphicsProject.Assets
 
         public override void Update(GameTime gameTime)
         {
-            float dt = (float) gameTime.ElapsedGameTime.TotalSeconds;
+            var dt = (float)GameUtilities.Time.ElapsedGameTime.TotalSeconds;
 
             _currentMouseState = Mouse.GetState();
 
@@ -150,7 +150,7 @@ namespace GraphicsProject.Assets
             }
 
             // Handle mouse movement
-            RotateWithMouse(dt);            
+            RotateWithMouse();            
 
             Mouse.SetPosition(Game.GraphicsDevice.Viewport.Width / 2, Game.GraphicsDevice.Viewport.Height / 2);
 
@@ -159,8 +159,10 @@ namespace GraphicsProject.Assets
             base.Update(gameTime);
         }
 
-        private void RotateWithMouse(float dt)
+        private void RotateWithMouse()
         {
+            var dt = (float)GameUtilities.Time.ElapsedGameTime.TotalSeconds;
+
             float deltaX;
             float deltaY;
 

@@ -5,6 +5,8 @@ matrix World;
 matrix View;
 matrix Projection;
 
+float Angle;
+
 float3 AmbientColor = float3(0.15f, 0.15f, 0.15f);
 float3 DiffuseColor = float3(1, 1, 1);
 float3 LightColor[NUM_LIGHTS];
@@ -72,6 +74,11 @@ VertexShaderOutput MainVS(in VertexShaderInput input)
     output.lightPos1 = normalize(output.lightPos1);
     output.lightPos2 = normalize(output.lightPos2);
     output.lightPos3 = normalize(output.lightPos3);
+
+    float cRotation = cos(Angle);
+    float sRotation = sin(Angle);
+
+    output.UV = mul(output.UV, float2x2(cRotation, -sRotation, sRotation, cRotation));
     
     return output;
 }

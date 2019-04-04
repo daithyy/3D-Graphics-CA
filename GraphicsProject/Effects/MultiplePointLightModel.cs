@@ -51,46 +51,57 @@ namespace GraphicsProject.Effects
 
         public override void Update()
         {
+            var dt = (float)GameUtilities.Time.ElapsedGameTime.TotalSeconds;
+
             MultiplePointLightMaterial material = ((MultiplePointLightMaterial)Material);
 
             for (int i = 0; i < material.Position.Length; i++)
             {
                 float[] radius = material.Attenuation;
                 Color[] color = material.LightColor;
-                float[] speed = { 1f, 1f, 1f };
+                float[] speed = { 100f, 100f, 100f };
 
                 DebugEngine.AddBoundingSphere(new BoundingSphere(material.Position[i], radius[i]), color[i]);
 
                 if (InputEngine.IsKeyHeld(Keys.Up))
-                    ((MultiplePointLightMaterial)Material).Position[i] += new Vector3(0, 0, -speed[i]);
+                    material.Position[i] += new Vector3(0, 0, -speed[i] * dt);
 
                 if (InputEngine.IsKeyHeld(Keys.Down))
-                    ((MultiplePointLightMaterial)Material).Position[i] += new Vector3(0, 0, speed[i]);
+                    material.Position[i] += new Vector3(0, 0, speed[i] * dt);
 
                 if (InputEngine.IsKeyHeld(Keys.Left))
-                    ((MultiplePointLightMaterial)Material).Position[i] += new Vector3(-speed[i], 0, 0);
+                    material.Position[i] += new Vector3(-speed[i] * dt, 0, 0);
 
                 if (InputEngine.IsKeyHeld(Keys.Right))
-                    ((MultiplePointLightMaterial)Material).Position[i] += new Vector3(speed[i], 0, 0);
+                    material.Position[i] += new Vector3(speed[i] * dt, 0, 0);
 
                 if (InputEngine.IsKeyHeld(Keys.PageUp))
-                    ((MultiplePointLightMaterial)Material).Position[i] += new Vector3(0, speed[i], 0);
+                    material.Position[i] += new Vector3(0, speed[i] * dt, 0);
 
                 if (InputEngine.IsKeyHeld(Keys.PageDown))
-                    ((MultiplePointLightMaterial)Material).Position[i] += new Vector3(0, -speed[i], 0);
+                    material.Position[i] += new Vector3(0, -speed[i] * dt, 0);                
+
+                if (material.IsAlternateTexture)
+                {
+                    if (InputEngine.IsKeyHeld(Keys.L))
+                        material.Rotation += 0.1f * dt;
+
+                    if (InputEngine.IsKeyHeld(Keys.J))
+                        material.Rotation -= 0.1f * dt;
+                }
 
                 if (InputEngine.IsKeyHeld(Keys.Add))
-                    ((MultiplePointLightMaterial)Material).Attenuation[i] += speed[i] * 2;
+                    material.Attenuation[i] += (speed[i] * 2) * dt;
 
                 if (InputEngine.IsKeyHeld(Keys.Subtract))
-                    ((MultiplePointLightMaterial)Material).Attenuation[i] -= speed[i] * 2;
+                    material.Attenuation[i] -= (speed[i] * 2) * dt;
 
                 if (InputEngine.IsKeyPressed(Keys.Space))
-                    ((MultiplePointLightMaterial) Material).IsAlternateTexture =
-                        !((MultiplePointLightMaterial) Material).IsAlternateTexture;
+                    material.IsAlternateTexture =
+                        !material.IsAlternateTexture;
 
                 if (InputEngine.IsKeyPressed(Keys.C))
-                    ((MultiplePointLightMaterial)Material).LightColor = new[] { Color.White, Color.White, Color.White };
+                    material.LightColor = new[] { Color.White, Color.White, Color.White };
             }
 
             base.Update();

@@ -117,6 +117,7 @@ namespace GraphicsProject.Materials
         public float[] Attenuation { get; set; }
         public float[] FallOff { get; set; }
         public float SpecularPower { get; set; }
+        public float Rotation { get; set; }
 
         public bool IsAlternateTexture { get; set; }
 
@@ -147,6 +148,8 @@ namespace GraphicsProject.Materials
             SpecularPower = 16f;
 
             IsAlternateTexture = false;
+
+            Rotation = 0;
         }
 
         public override void SetEffectParameters(Effect effect)
@@ -165,6 +168,7 @@ namespace GraphicsProject.Materials
             effect.Parameters["Attenuation"]?.SetValue(Attenuation);
             effect.Parameters["FallOff"]?.SetValue(FallOff);
             effect.Parameters["IsAlternate"]?.SetValue(IsAlternateTexture);
+            effect.Parameters["Angle"]?.SetValue(Rotation);
 
             base.SetEffectParameters(effect);
         }

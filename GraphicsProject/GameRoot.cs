@@ -47,7 +47,7 @@ namespace GraphicsProject
         protected override void Initialize()
         {
             GameUtilities.Content = Content;
-            GameUtilities.GraphicsDevice = GraphicsDevice;
+            GameUtilities.GraphicsDevice = GraphicsDevice;            
 
             _debug.Initialize();
 
@@ -109,6 +109,8 @@ namespace GraphicsProject
         {
             if (InputEngine.IsKeyPressed(Keys.Escape))
                 Exit();
+
+            GameUtilities.Time = gameTime;
 
             foreach (var gameObjects in _gameObjects)
             {
