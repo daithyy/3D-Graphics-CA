@@ -311,3 +311,10 @@
 /processorParam:TextureFormat=Color
 /build:Textures/Pokeball/Sphere_albedo2.png
 
+#begin Fonts/systemFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/systemFont.spritefont
+

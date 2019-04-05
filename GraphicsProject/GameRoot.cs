@@ -16,14 +16,14 @@ namespace GraphicsProject
     public class GameRoot : Game
     {
         GraphicsDeviceManager _graphics;
-        SpriteBatch _spriteBatch;
         InputEngine _input;
+        SpriteBatch _spriteBatch;
+        SpriteFont _sFont;
         DebugEngine _debug;
 
         public static FPSCamera MainCamera;
 
         List<GameObject3D> _gameObjects = new List<GameObject3D>();
-        CustomEffectModel _model;
 
         List<MultiplePointLightMaterial> _lights = new List<MultiplePointLightMaterial>();
 
@@ -39,8 +39,9 @@ namespace GraphicsProject
             _input = new InputEngine(this);
 
             IsFixedTimeStep = true;
-            IsMouseVisible = true;
+            IsMouseVisible = false;
 
+            Window.Title = "3D Graphics CA - Demo";
             Content.RootDirectory = "Content";
         }
 
@@ -59,6 +60,7 @@ namespace GraphicsProject
         protected override void LoadContent()
         {            
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            _sFont = Content.Load<SpriteFont>("Fonts/systemFont");
 
             AddModel(new MultiplePointLightModel("house", new Vector3(-200, 0, 50),
                 new[]
@@ -154,6 +156,41 @@ namespace GraphicsProject
             }
 
             _debug.Draw(MainCamera);
+
+            DrawUI();
+        }
+
+        private void DrawUI()
+        {
+            _spriteBatch.Begin();
+
+            string[] menu = new[]
+            {
+                "CAMERA CONTROLS: ",
+                "W  - Move Forward",
+                "A  - Move Left",
+                "S  - Move Back",
+                "D  - Move Right",
+                "Q  - Move Up",
+                "E  - Move Down",
+                "LEFT SHIFT - Speed Up",
+                "",
+                "LIGHT CONTROLS: ",
+                "NUMPAD  - Controls Movement",
+                "C  - Set Light Color White",
+                "SPACE  - Toggle Alternate Texture",
+                "J  - Rotate Alt Tex Left",
+                "L  - Rotate Alt Tex Right"
+            };
+
+            var x = 20;
+            for (int i = 0; i < menu.Length; i++)
+            {
+                _spriteBatch.DrawString(_sFont, menu[i], new Vector2(20, x), Color.White);
+                x += 20;
+            }
+
+            _spriteBatch.End();
         }
     }
 }

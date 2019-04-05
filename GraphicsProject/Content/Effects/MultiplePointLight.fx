@@ -42,6 +42,7 @@ struct VertexShaderOutput
 {
     float4 Position : SV_POSITION;
     float2 UV : TEXCOORD0;
+    float2 UVAlt : TEXCOORD6;
     float3 WorldPosition : TEXCOORD1;
     float3 ViewDirection : TEXCOORD2;
     float3 lightPos1 : TEXCOORD3;
@@ -61,6 +62,7 @@ VertexShaderOutput MainVS(in VertexShaderInput input)
 
     output.Position = _projection;
     output.UV = input.UV;
+    output.UVAlt = output.UV;
     output.WorldPosition = _world;
     output.ViewDirection = CameraPosition.xyz - _world.xyz;
     output.ViewDirection = normalize(output.ViewDirection);
@@ -78,7 +80,7 @@ VertexShaderOutput MainVS(in VertexShaderInput input)
     float cRotation = cos(Angle);
     float sRotation = sin(Angle);
 
-    output.UV = mul(output.UV, float2x2(cRotation, -sRotation, sRotation, cRotation));
+    output.UVAlt = mul(output.UVAlt, float2x2(cRotation, -sRotation, sRotation, cRotation));
     
     return output;
 }
@@ -92,7 +94,7 @@ float4 MainPS(VertexShaderOutput input) : COLOR
 
     float3 _textureColor[NUM_TEXTURES];
     _textureColor[0] = ModelTexture.Sample(TextureSampler, input.UV);
-    _textureColor[1] = AlternateTexture.Sample(TextureSampler, input.UV);
+    _textureColor[1] = AlternateTexture.Sample(TextureSampler, input.UVAlt);
 
     float3 _normalColor = NormalTexture.Sample(TextureSampler, input.UV);
 
