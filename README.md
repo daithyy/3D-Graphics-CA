@@ -1,4 +1,7 @@
 # 3D Graphics CA Project
+## Documentation
+[Check out the Wiki!](https://github.com/s00172994/3D-Graphics-CA/wiki/Documentation)
+
 ## Demo
 ### Features
 _Specular shading_ was added as an extra challenge for fun as one of my models had a specular map.
